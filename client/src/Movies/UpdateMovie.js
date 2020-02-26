@@ -3,6 +3,16 @@ import axios from "axios";
 // import Movie from "./Movie";
 
 const UpdateMovie = props => {
+  const initialState = {
+    id: 0,
+    title: "",
+    director: "",
+    metascore: 0,
+    stars: []
+  };
+
+  const [updatedMovie, setUpdatedMovie] = useState(initialState);
+
   let urlEnd = props.history.location.pathname;
   urlEnd = urlEnd.split("/");
   const id = urlEnd[urlEnd.length - 1];
@@ -13,16 +23,6 @@ const UpdateMovie = props => {
       .then(res => setUpdatedMovie(res.data))
       .catch(err => console.log(err.response));
   });
-
-  const initialState = {
-    id: 0,
-    title: "",
-    director: "",
-    metascore: 0,
-    stars: []
-  };
-
-  const [updatedMovie, setUpdatedMovie] = useState(initialState);
 
   const handleChange = event => {
     setUpdatedMovie({
